@@ -43,6 +43,7 @@ namespace API.Controllers
                 username = user.UserName,
                 token = _tokenService.CreateToken(user),
                 KnownAs=user.KnownAs,
+                Gender=user.Gender
             };
         }
         private async Task<bool> UserExists(string username)
@@ -76,6 +77,7 @@ namespace API.Controllers
                 token = _tokenService.CreateToken(user),
                 photoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 KnownAs=user.KnownAs,
+                Gender=user.Gender
             };
         }
     }
