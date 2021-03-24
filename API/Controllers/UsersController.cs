@@ -32,6 +32,8 @@ namespace API.Controllers
             _userRepository = userRepository;
 
         }
+        
+
     [HttpGet]
    // [AllowAnonymous]
 
@@ -54,7 +56,7 @@ namespace API.Controllers
     
     }
 
-
+     
     [HttpGet("{username}", Name="GetUser")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {

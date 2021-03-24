@@ -18,7 +18,10 @@ this.setCurrentUsers();
  }
  setCurrentUsers(){
    const user: User =JSON.parse(localStorage.getItem('user'));
+   if(user) {
    this.accountService.setCurrentUser(user);
+   }
+   
  }
 
  
