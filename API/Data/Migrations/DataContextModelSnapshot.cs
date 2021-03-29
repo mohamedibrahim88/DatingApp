@@ -220,6 +220,34 @@ namespace API.Data.Migrations
                     b.ToTable("Photo");
                 });
 
+            modelBuilder.Entity("API.Extensions.Connection", b =>
+                {
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ConnectionId");
+
+                    b.HasIndex("GroupName");
+
+                    b.ToTable("Connections");
+                });
+
+            modelBuilder.Entity("API.Extensions.Group", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Groups");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -353,6 +381,13 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("API.Extensions.Connection", b =>
+                {
+                    b.HasOne("API.Extensions.Group", null)
+                        .WithMany("Connections")
+                        .HasForeignKey("GroupName");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -403,6 +438,11 @@ namespace API.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Extensions.Group", b =>
+                {
+                    b.Navigation("Connections");
                 });
 #pragma warning restore 612, 618
         }
